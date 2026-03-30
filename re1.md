@@ -1,163 +1,251 @@
-# CSE0001 — Digital Literacy  
-## Individual Case Study Report
+PROJECT REPORT
 
-**Title:** The Digital Divide Within: From Basic Tools to Responsible Digital Citizenship  
+Project Title
+VIT Bhopal SGPA and CGPA Calculator
 
-**Subtitle:** A Case Study in Digital Literacy, Online Identity, Collaboration, and Cyber Awareness  
+1. Introduction
 
-| Field | Details |
-|--------|---------|
-| Course | Digital Literacy — NGMC \| VITyarthi *(CSE0001)* |
-| Submission type | Individual case study |
-| Submission deadline | 31 March 2026 |
-| Student name | Pratham Yadav |
-| Registration number | 25BAI11032 |
-| Program | B.Tech CSE (AIML), VIT Bhopal University |
+This project is a Python-based command-line application developed to calculate SGPA and CGPA using the VIT-style 10-point grading system. The program allows a student to enter academic details such as subject names, credits, grades, semester SGPAs, and semester credits, then automatically computes the final result using weighted average formulas.
 
-**Prepared in accordance with the academic guidelines referenced in the source case study document.**
+The project was built as a practical solution to a very common student problem: calculating grade performance accurately without relying on repeated manual calculations. Although SGPA and CGPA look simple at first glance, they depend on weighted credits, which makes manual computation slow and error-prone. This project turns that process into a simple guided interaction.
 
----
+2. Problem Statement
 
-## Abstract
+Students often need to calculate their SGPA or CGPA to track academic progress, estimate eligibility for scholarships or placements, and understand their overall performance. In many cases, students either calculate this manually or use unreliable online tools that may not match their university's grading pattern.
 
-This report follows the structure and reasoning of the case study document *The Digital Divide Within*, which examines a composite student narrative (“Arjun”) across digital identity, collaborative work, cyber awareness, and professional communication. The central thesis is that **digital participation is not equivalent to digital literacy**: many students appear fluent because platforms reduce friction and reward polished outputs, while underlying understanding of data ownership, accountability, misrepresentation, and safe behaviour under pressure remains weak. The case argues for **intentional** use of digital presence, **pedagogically grounded** collaboration, **behavioural** (not only cognitive) cyber education, and **context-appropriate** communication—concluding that slowing down before acting digitally is the highest-leverage personal habit.
+The specific problem addressed in this project is:
 
----
+How can we create a simple, reliable, and easy-to-use calculator that helps students compute SGPA and CGPA correctly according to the VIT grading system?
 
-## Table of Contents
+This problem matters because:
+- SGPA and CGPA are weighted averages, not simple averages.
+- Manual calculation can lead to mistakes, especially when many subjects or semesters are involved.
+- Students often want quick results without doing the same arithmetic repeatedly.
+- A personalized tool gives better confidence than using an unknown external calculator.
 
-1. [Section A — Establishing the Context](#section-a--establishing-the-context)  
-2. [Section B — Digital Identity and Ethics](#section-b--digital-identity-and-ethics)  
-3. [Section C — Collaboration vs. Misuse](#section-c--collaboration-vs-misuse)  
-4. [Section D — Cyber Awareness and Responsibility](#section-d--cyber-awareness-and-responsibility)  
-5. [Section E — Communication and Digital Etiquette](#section-e--communication-and-digital-etiquette)  
-6. [Section F — Personal Reflection](#section-f--personal-reflection)  
-7. [Synthesis and Recommendations](#synthesis-and-recommendations)  
+3. Why the Problem Matters
 
----
+Academic performance indicators such as SGPA and CGPA are important in student life. They are often used in internship applications, higher studies, scholarships, and placement filtering. Even a small error in calculation can create confusion or lead to poor planning.
 
-## Section A — Establishing the Context
+This project is meaningful because it solves a real and immediate problem faced by students. Instead of focusing only on theory, it applies programming to an everyday educational use case. It also shows how software can reduce human error and improve decision-making in a simple but effective way.
 
-### A.1 Surface versus substance
+4. Project Objectives
 
-Students may use Canva, GitHub, Google Docs, and LinkedIn regularly and still lack literacy about **why** design choices signal authority, what commit history communicates to recruiters, or what personal data they grant when accepting default collaboration or cookie settings. The gap is not only access to technology but **understanding the systems tools operate inside**. Digital actions often feel reversible; in practice, traces accumulate in a searchable, persistent environment.
+The main objectives of the project were:
+- To build a working SGPA and CGPA calculator in Python
+- To support the VIT Bhopal 10-point grade system
+- To provide more than one way to calculate CGPA
+- To prevent invalid input through proper validation
+- To keep the program beginner-friendly and easy to use from the terminal
+- To write clean and modular code using functions
 
-### A.2 Why platforms create an illusion of competence
+5. Scope of the Project
 
-Educational and professional platforms are engineered for low friction: templates, auto-save, simultaneous editing, and profile prompts make completion easy. **Ease is mistaken for competence** when assessment rewards visible outputs over explanation of decisions, data retention, or originality of work. Confidence becomes structurally manufactured by design choices that prioritize engagement over depth.
+The current scope of the project includes:
+- SGPA calculation from subject-wise grades and credits
+- CGPA calculation from semester SGPAs and semester credits
+- CGPA calculation directly from all subject grades across multiple semesters
+- Input validation for numbers and grades
+- Clear display of totals and final results
 
-### A.3 Digital participation is not digital literacy
+The project does not currently include:
+- A graphical user interface
+- Persistent data storage
+- PDF or file export of the result
+- Support for multiple university grading systems
 
-- **Participation:** being present—posting, uploading, clicking, collaborating.  
-- **Literacy:** understanding implications—data ownership, algorithmic shaping of visibility, professional norms by context, and risks of connectivity.
+6. Approach to Solving the Problem
 
-The case narrative ties “Arjun” to gaps in each domain: active LinkedIn presence but weak representation literacy; smooth collaboration but weak individual accountability; fast messaging but underdeveloped professional tone; **awareness** of phishing without **behavioural** safety under pressure. The issue is framed as institutional and cultural: tool adoption has outpaced digital education.
+The solution approach was to design an interactive command-line tool that guides the user step by step and performs the required weighted calculations automatically.
 
----
+The project was divided into the following logical parts:
 
-## Section B — Digital Identity and Ethics
+First, a grade-to-point mapping was defined using a Python dictionary. This allows letter grades like S, A, B, and C to be converted into numerical values needed for calculation.
 
-### B.1 Position on digital presence
+Second, separate helper functions were created for input validation. Instead of writing validation logic repeatedly, functions such as `get_positive_int`, `get_positive_float`, `get_float_in_range`, and `get_grade` were used to ensure only valid values are accepted.
 
-Building a digital presence is **genuinely beneficial** when approached with intentionality and accuracy. For many who treat it as **performance** rather than an honest record, it creates **asymmetric risk**—visible upside with quiet accumulation of liability (misalignment with real skills, reputational harm).
+Third, the calculator logic was separated into three main functions:
+- `calculate_sgpa()`
+- `calculate_cgpa_from_semesters()`
+- `calculate_cgpa_from_courses()`
 
-### B.2 Limits of the “equal opportunity” argument
+This made the program easier to understand, test, and extend.
 
-Platforms can widen reach, but **profile quality** and **visibility** still correlate with mentorship, writing ability, and network advantages; algorithms favour completeness and engagement. If profiles exaggerate ability, platforms become a **market for misrepresentation**, disadvantaging honest candidates and wasting employer time.
+Finally, a `main()` function was used to display the menu, explain the grading table, and direct the user to the required mode of calculation.
 
-### B.3 Performance over authenticity
+7. System Design and Working
 
-Incentive structures encourage listing “explored” skills as strong skills and maximizing profile completeness. Over time the **signal corrupts with noise**; profiles become less epistemically reliable, which is why interviews and practical tests remain central.
+The application follows a simple menu-driven structure. When the program starts, it displays the title and the grade mapping table. It then asks the user to choose one of three options.
 
-### B.4 Ethics of misrepresentation
+Option 1: Calculate SGPA from subject grades
+In this mode, the user enters the number of subjects in a semester. For each subject, the program asks for:
+- Subject name
+- Credits
+- Grade
 
-Widespread behaviour is not automatically ethical. A defensible line distinguishes **aspirational but transparent** framing from **deceptive** expert claims on skills one cannot demonstrate. Misrepresentation harms peers, employers, and ultimately the individual who may fail in a misaligned role.
+The program multiplies each subject's credit by the corresponding grade point, sums the results, divides by total credits, and displays the SGPA.
 
-### B.5 Permanence and accountability
+Option 2: Calculate CGPA from semester SGPAs
+In this mode, the user enters the number of completed semesters. For each semester, the program asks for:
+- Semester SGPA
+- Semester credits
 
-Digital content is indexed and hard to truly delete. Early mistakes (e.g. weak repositories, copied code) can persist. The report argues for **accountability paired with growth**: updating context, showing improvement over time, and actively managing one’s record rather than a one-time upload.
+The program then calculates the weighted average of all semester SGPAs.
 
----
+Option 3: Calculate CGPA directly from all course grades
+In this mode, the user enters the number of semesters and then enters subject-wise details for each semester. This gives a more detailed and direct CGPA calculation from raw academic data.
 
-## Section C — Collaboration vs. Misuse
+8. Grade Mapping Used
 
-### C.1 Case for digital collaboration
+The program uses the following VIT-style grade mapping:
 
-Shared documents and collaboration tools are major pedagogical advances: versioning, simultaneous work, and professional norms (comments, suggestions, conflict resolution) mirror workplace practice. **Delegating and synthesizing** group output can itself be a legitimate leadership skill.
+- S = 10
+- A = 9
+- B = 8
+- C = 7
+- D = 6
+- E = 5
+- F = 0
+- N = 0
 
-### C.2 Where the argument weakens in practice
+This mapping is stored in the `GRADE_POINTS` dictionary and is reused throughout the program.
 
-When assessment grades **group output** without probing individual understanding, platforms enable strong deliverables while **learning remains unequal**. The failure is attributed to **assessment design**, not the technology itself—e.g. lacking individual explanations, section tests, or contribution reflection.
+9. Formulas Used
 
-### C.3 Collaboration versus academic dishonesty
+The correctness of the project depends on using weighted average formulas rather than ordinary averages.
 
-Boundaries (free-riding, pasted plagiarism, partitioned work without integration) are **not** resolved by the platform; they require **explicit institutional rules** on individual contribution, sources, and plagiarism in shared artefacts.
+SGPA Formula:
+SGPA = Sum of (Credits x Grade Points) / Sum of Credits
 
-### C.4 Visibility of effort and free-riding
+CGPA from Semester SGPA Formula:
+CGPA = Sum of (Semester SGPA x Semester Credits) / Sum of Semester Credits
 
-Contribution logs exist, but enforcement is often sparse. The fix is **expected accountability**: reviewing logs, routine follow-up questions, and making “fair share” behaviour the norm rather than assuming polish equals equal effort.
+CGPA from All Course Grades Formula:
+CGPA = Sum of (Credits x Grade Points for all subjects) / Sum of Credits for all subjects
 
----
+Approximate Percentage:
+Percentage = CGPA x 10
 
-## Section D — Cyber Awareness and Responsibility
+This percentage is only an estimate and may not exactly match official university conversion rules.
 
-### D.1 Why awareness campaigns often fail
+10. Key Design Decisions
 
-Knowing what phishing looks like did not stop “Arjun” from clicking. **Awareness is cognitive; exploitation targets emotion and urgency.** Standard training often ignores how **reward cues and time pressure** bypass analytical thinking—criminals exploit this deliberately.
+Several important decisions were made while building the project.
 
-### D.2 Individual vs. systemic responsibility
+Decision 1: Use a command-line interface
+The project was designed as a terminal-based program instead of a GUI application. This decision kept the project simple, lightweight, and focused on core logic.
 
-Users have duties, but they act inside systems: spoofable email, engagement-first UX, and single-lecture security modules **shape** failure modes. **Phishing simulations with immediate feedback** are cited as more behaviourally effective than one-off lectures when institutionalized.
+Decision 2: Use functions for modularity
+Instead of writing everything inside one large block, the program was divided into small reusable functions. This improved readability and made debugging easier.
 
-### D.3 Negligence, education, or systemic failure?
+Decision 3: Include multiple calculation modes
+Students do not always have the same type of data available. Some know individual subject grades, while others only know semester SGPAs. Supporting three modes made the tool more flexible.
 
-Victim-blaming as “negligence” or “just need more slides” is incomplete. The case favours a **systemic** picture: student caution, institutional habit-building, platform filtering, and a culture of urgency all interact.
+Decision 4: Add strict input validation
+A major focus of the project was preventing invalid data from affecting the result. Repeated input prompts ensure that the program produces meaningful output only from valid inputs.
 
-### D.4 Adequacy of current preventive measures
+Decision 5: Use a dictionary for grade mapping
+A dictionary is simple, efficient, and easy to update if the grading scheme changes in the future.
 
-Password rules, 2FA, posters, and annual modules help infrastructure more than **habit under stress**. Better prevention needs **repetition**, **emotional inoculation** (safe practice under simulated urgency), and **social norms** that make verification normal, not “paranoid.”
+Decision 6: Allow decimal credits
+Credits are not always whole numbers, so the program accepts floating-point credit values to make the calculator more realistic and practical.
 
----
+11. Challenges Faced
 
-## Section E — Communication and Digital Etiquette
+Although the program is conceptually simple, a few practical challenges came up during development.
 
-### E.1 Knowing versus doing
+Challenge 1: Handling invalid user input
+Users can enter letters where numbers are expected, negative values, blank inputs, or unsupported grades. A lot of attention had to be given to validation so the program would not crash or calculate incorrect results.
 
-Students often **know** professional email norms but default to **habits** from WhatsApp, DMs, and Discord—brevity and speed. Without **visible consequences**, informal professional messages persist.
+Challenge 2: Designing clear program flow
+Since the project has three different calculation modes, it was important to keep the interaction simple and not confuse the user. The menu and prompts had to be arranged carefully.
 
-### E.2 Evolution of norms
+Challenge 3: Managing repeated logic
+Without proper planning, the same validation or calculation logic could have been repeated in multiple places. This was solved by creating helper functions and separating responsibilities clearly.
 
-Workplace communication has informal channels (Slack, etc.), but the shift is from **rigid templates** to **contextual appropriateness**, which still requires skill. “Arjun’s” error is misread context, not merely informality.
+Challenge 4: Balancing simplicity and usefulness
+The project needed to remain simple enough for a beginner-level Python project, but still useful in a real academic setting. Choosing the right features without overcomplicating the code was an important part of development.
 
-### E.3 Judging digital communication style
+12. How the Challenges Were Solved
 
-Style legitimately signals professionalism and respect for others’ time, but **cultural and linguistic diversity** matters: poor structure may reflect gaps, not malice—**teaching norms explicitly** is the ethical institutional response.
+The input validation challenge was solved by writing dedicated functions that keep asking the user until a valid value is entered.
 
----
+The multi-mode workflow challenge was solved by separating each calculator into its own function and keeping `main()` responsible only for navigation.
 
-## Section F — Personal Reflection (from the source case study)
+The code duplication challenge was reduced by reusing the grade dictionary and helper functions across all calculation methods.
 
-The author of the original case study reports a shift from equating digital literacy with **tool proficiency** toward seeing **literacy as understanding implications and behaviour**. The phishing vignette—**knowing yet still clicking**—highlights the knowledge–behaviour gap. Reflection on **skill inflation** on profiles challenges rationalizations like “everyone does it.” The single chosen behaviour change is to **slow down** before responding (email, offers, requests), countering platform-driven urgency that preceded each of Arjun’s mistakes.
+The simplicity challenge was handled by keeping the interface text clear, limiting the number of menu options, and avoiding advanced features that were not necessary for the first version.
 
----
+13. Testing and Verification
 
-## Synthesis and Recommendations
+The program can be tested by running it with different combinations of valid and invalid input.
 
-Drawing strictly from the case study PDF’s arc, the following consolidated recommendations apply to students and to course design:
+Examples of useful test cases include:
+- A normal SGPA calculation with 4 or 5 subjects
+- A CGPA calculation using semester SGPAs with different credit totals
+- A detailed CGPA calculation across multiple semesters
+- Entering invalid grades such as `P` or `X`
+- Entering negative or zero credits
+- Entering non-numeric values for subject count or SGPA
 
-1. **Treat literacy as systems thinking**, not checklist tool use—include data, algorithms, and permanence in how you evaluate your own digital actions.  
-2. **Build digital identity intentionally**: accurate skill levels, evidence-backed claims, and ongoing curation of public history.  
-3. **In group work**, seek clarity on individual accountability; institutions should assess process and understanding, not only the final shared file.  
-4. **Cyber safety**: practice **slow verification** under simulated pressure; pair institutional **simulations** with peer norms that reward checking senders and links.  
-5. **Communication**: match channel and tone to context; when unsure, prefer clarity, structure, and respect for the recipient’s time over casual defaults from social apps.  
-6. **Personal habit with highest leverage:** deliberate pause before high-stakes digital actions—themes of urgency and speed run through identity risk, fraud, and collaboration quality.
+The expected behavior is that:
+- Valid values are accepted and used in the calculation
+- Invalid values are rejected with a clear message
+- The program continues asking until the user provides correct input
+- Final SGPA or CGPA is shown in formatted form
 
----
+14. Learning Outcomes
 
-## Declaration
+This project provided several valuable learning outcomes.
 
-This report is a structured written submission based on the content and organization of the case study PDF **CaseStudy_DigitalLiteracy.pdf** (Digital Literacy — NGMC \| VITyarthi). Supporting artefacts in this repository (for example task summaries, email etiquette samples, and the UPI fraud case study) align with the broader CSE0001 Digital Literacy portfolio described in `r4.md`.
+Technical learning:
+- Understanding how weighted averages work in real applications
+- Using dictionaries effectively for data mapping
+- Writing reusable functions to reduce duplication
+- Applying loops and conditional statements in a menu-driven program
+- Validating user input carefully to improve reliability
+- Structuring a Python program into logical components
 
----
+Practical learning:
+- Building software around a real user problem
+- Thinking about usability, not just correctness
+- Designing prompts and output in a way that is easy to follow
+- Realizing that small tools can still require careful planning
 
-*End of report*
+15. Strengths of the Project
+
+The main strengths of the project are:
+- It solves a real student problem
+- It is easy to run and understand
+- It has clear modular code structure
+- It supports multiple academic calculation scenarios
+- It reduces manual errors through automated weighted calculations
+- It includes strong input validation for a beginner-friendly application
+
+16. Limitations
+
+Like any first version, the project has some limitations:
+- It runs only in the terminal
+- It does not save user data for future reuse
+- It assumes one fixed grading system
+- It gives only an approximate percentage conversion
+- It does not generate printable reports automatically
+
+These limitations do not reduce the usefulness of the project, but they show areas where the program can be improved.
+
+17. Future Enhancements
+
+The project can be expanded in several ways:
+- Add a graphical user interface using Tkinter or PyQt
+- Save semester records to a file or database
+- Export results to a text file or PDF
+- Support multiple universities and grading schemes
+- Add subject categories like theory, lab, or audit courses
+- Show performance trends across semesters
+- Add exception-safe file handling and history tracking
+
+18. Conclusion
+
+The VIT Bhopal SGPA and CGPA Calculator is a practical Python project that demonstrates how programming can be used to solve a real academic problem. The project focuses on correctness, simplicity, and usability. It supports three modes of calculation, uses proper weighted formulas, and includes strong input validation to improve reliability.
+
+Beyond the immediate usefulness of calculating grades, the project also reflects good programming practices such as modular design, reusable functions, and clear user interaction. Overall, this project is both a functional academic tool and a meaningful learning exercise in Python development.
